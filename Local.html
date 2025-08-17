@@ -1,0 +1,584 @@
+<html class="scroll-smooth" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Gau Ko Git - Local Products Marketplace
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-gray-50 min-h-screen flex flex-col">
+  <!-- Header / Navbar -->
+  <header class="bg-white shadow sticky top-0 z-50">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <a class="text-2xl font-bold text-green-700 flex items-center space-x-2" href="#">
+     <img alt="Logo of Gau Ko Git, a stylized cow head with green leaves" class="w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/52868786-faa6-4333-1fca-cf7db3a7297e.jpg" width="40"/>
+     <span>
+      Gau Ko Git
+     </span>
+    </a>
+    <nav class="hidden md:flex space-x-6 text-gray-700 font-semibold">
+     <a class="hover:text-green-700 transition" href="#products">
+      Products
+     </a>
+     <a class="hover:text-green-700 transition" href="#seller">
+      Seller Panel
+     </a>
+     <a class="hover:text-green-700 transition" href="#buyer">
+      Buyer Panel
+     </a>
+     <a class="hover:text-green-700 transition relative" href="#cart">
+      <i class="fas fa-shopping-cart text-xl">
+      </i>
+      <span class="absolute -top-2 -right-3 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center" id="cart-count">
+       0
+      </span>
+     </a>
+    </nav>
+    <button class="md:hidden text-green-700 focus:outline-none" id="nav-toggle">
+     <i class="fas fa-bars fa-lg">
+     </i>
+    </button>
+   </div>
+   <nav class="hidden md:hidden bg-white border-t border-gray-200" id="mobile-menu">
+    <a class="block px-4 py-3 border-b border-gray-200 hover:bg-green-50" href="#products">
+     Products
+    </a>
+    <a class="block px-4 py-3 border-b border-gray-200 hover:bg-green-50" href="#seller">
+     Seller Panel
+    </a>
+    <a class="block px-4 py-3 border-b border-gray-200 hover:bg-green-50" href="#buyer">
+     Buyer Panel
+    </a>
+    <a class="block px-4 py-3 hover:bg-green-50" href="#cart">
+     Cart
+    </a>
+   </nav>
+  </header>
+  <main class="flex-grow container mx-auto px-4 py-8 space-y-16">
+   <!-- Products Section -->
+   <section class="max-w-7xl mx-auto" id="products">
+    <h2 class="text-3xl font-bold text-green-700 mb-6 text-center">
+     Local Products Marketplace
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8" id="product-list">
+     <!-- Products will be dynamically inserted here -->
+    </div>
+   </section>
+   <!-- Seller Panel -->
+   <section class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md" id="seller">
+    <h3 class="text-2xl font-bold text-green-700 mb-4">
+     Seller Panel
+    </h3>
+    <form class="space-y-4" id="seller-form">
+     <div>
+      <label class="block font-semibold mb-1" for="product-category">
+       Category
+      </label>
+      <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" id="product-category" required="">
+       <option disabled="" selected="" value="">
+        Select category
+       </option>
+       <option value="Ghee">
+        Ghee
+       </option>
+       <option value="Vegetable">
+        Vegetable
+       </option>
+       <option value="Fruit">
+        Fruit
+       </option>
+       <option value="Dairy Product">
+        Dairy Product
+       </option>
+       <option value="Clay">
+        Clay
+       </option>
+       <option value="Wool Clothes">
+        Wool Clothes
+       </option>
+      </select>
+     </div>
+     <div>
+      <label class="block font-semibold mb-1" for="product-name">
+       Product Name
+      </label>
+      <input class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" id="product-name" placeholder="Enter product name" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block font-semibold mb-1" for="product-description">
+       Description
+      </label>
+      <textarea class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" id="product-description" placeholder="Brief description" rows="2"></textarea>
+     </div>
+     <div>
+      <label class="block font-semibold mb-1" for="product-price">
+       Price (in NPR)
+      </label>
+      <input class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" id="product-price" min="1" placeholder="Enter price" required="" type="number"/>
+     </div>
+     <div>
+      <label class="block font-semibold mb-1" for="product-image">
+       Image URL
+      </label>
+      <input class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" id="product-image" placeholder="Enter image URL or leave blank for placeholder" type="url"/>
+     </div>
+     <div class="flex space-x-4">
+      <button class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition flex items-center space-x-2" type="submit">
+       <i class="fas fa-plus">
+       </i>
+       <span>
+        Add Product
+       </span>
+      </button>
+      <button class="bg-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-400 transition" id="seller-clear" type="button">
+       Clear
+      </button>
+     </div>
+    </form>
+    <div class="mt-8">
+     <h4 class="text-xl font-semibold text-green-700 mb-4">
+      Your Products
+     </h4>
+     <div class="space-y-4" id="seller-products">
+      <!-- Seller products list -->
+     </div>
+    </div>
+   </section>
+   <!-- Buyer Panel -->
+   <section class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md" id="buyer">
+    <h3 class="text-2xl font-bold text-green-700 mb-4">
+     Buyer Panel
+    </h3>
+    <p class="mb-4 text-gray-700">
+     Browse products above and add them to your cart. Manage your cart below.
+    </p>
+    <div class="space-y-4" id="buyer-cart">
+     <h4 class="text-xl font-semibold text-green-700">
+      Your Cart
+     </h4>
+     <div class="space-y-2" id="cart-items">
+      <p class="text-gray-500">
+       Your cart is empty.
+      </p>
+     </div>
+     <div class="mt-4 flex justify-between items-center">
+      <span class="font-semibold text-lg text-green-700">
+       Total: NPR
+       <span id="cart-total">
+        0
+       </span>
+      </span>
+      <button class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition disabled:opacity-50" disabled="" id="checkout-btn">
+       Checkout
+      </button>
+     </div>
+    </div>
+   </section>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white py-6 mt-auto">
+   <div class="container mx-auto px-4 text-center">
+    <p>
+     © 2024 Gau Ko Git. All rights reserved.
+    </p>
+   </div>
+  </footer>
+  <script>
+   // Mobile nav toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    navToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Data storage keys
+    const PRODUCTS_KEY = 'gauko_git_products';
+    const CART_KEY = 'gauko_git_cart';
+
+    // Elements
+    const productListEl = document.getElementById('product-list');
+    const sellerForm = document.getElementById('seller-form');
+    const sellerProductsEl = document.getElementById('seller-products');
+    const cartCountEl = document.getElementById('cart-count');
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartTotalEl = document.getElementById('cart-total');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const sellerClearBtn = document.getElementById('seller-clear');
+
+    // State
+    let products = [];
+    let cart = {};
+    let editingProductId = null;
+
+    // Utility: generate unique ID
+    function generateId() {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Load products from localStorage or initialize with sample data
+    function loadProducts() {
+      const stored = localStorage.getItem(PRODUCTS_KEY);
+      if (stored) {
+        products = JSON.parse(stored);
+      } else {
+        // Sample initial products
+        products = [
+          {
+            id: generateId(),
+            category: 'Ghee',
+            name: 'Pure Cow Ghee',
+            description: 'Rich and aromatic pure cow ghee made traditionally.',
+            price: 1200,
+            image: 'https://placehold.co/400x300/png?text=Pure+Cow+Ghee',
+          },
+          {
+            id: generateId(),
+            category: 'Vegetable',
+            name: 'Fresh Spinach',
+            description: 'Organic fresh spinach from local farms.',
+            price: 80,
+            image: 'https://placehold.co/400x300/png?text=Fresh+Spinach',
+          },
+          {
+            id: generateId(),
+            category: 'Fruit',
+            name: 'Sweet Mangoes',
+            description: 'Juicy and sweet mangoes freshly picked.',
+            price: 150,
+            image: 'https://placehold.co/400x300/png?text=Sweet+Mangoes',
+          },
+          {
+            id: generateId(),
+            category: 'Dairy Product',
+            name: 'Fresh Milk',
+            description: 'Pure fresh milk from local cows.',
+            price: 60,
+            image: 'https://placehold.co/400x300/png?text=Fresh+Milk',
+          },
+          {
+            id: generateId(),
+            category: 'Clay',
+            name: 'Handmade Clay Pot',
+            description: 'Traditional handmade clay pot for cooking.',
+            price: 350,
+            image: 'https://placehold.co/400x300/png?text=Handmade+Clay+Pot',
+          },
+          {
+            id: generateId(),
+            category: 'Wool Clothes',
+            name: 'Woolen Shawl',
+            description: 'Warm and soft woolen shawl handwoven by local artisans.',
+            price: 1800,
+            image: 'https://placehold.co/400x300/png?text=Woolen+Shawl',
+          },
+        ];
+        saveProducts();
+      }
+    }
+
+    // Save products to localStorage
+    function saveProducts() {
+      localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
+    }
+
+    // Load cart from localStorage
+    function loadCart() {
+      const stored = localStorage.getItem(CART_KEY);
+      if (stored) {
+        cart = JSON.parse(stored);
+      } else {
+        cart = {};
+      }
+    }
+
+    // Save cart to localStorage
+    function saveCart() {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    // Render products in product list (buyer view)
+    function renderProducts() {
+      productListEl.innerHTML = '';
+      if (products.length === 0) {
+        productListEl.innerHTML = '<p class="col-span-full text-center text-gray-500">No products available.</p>';
+        return;
+      }
+      products.forEach((p) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-lg shadow-md overflow-hidden flex flex-col';
+        card.innerHTML = `
+          <img src="${p.image || 'https://placehold.co/400x300/png?text=No+Image'}" alt="Image of ${p.name}, a local product in category ${p.category}" class="w-full h-48 object-cover" />
+          <div class="p-4 flex flex-col flex-grow">
+            <h3 class="text-lg font-semibold text-green-700">${p.name}</h3>
+            <p class="text-sm text-gray-600 mb-2 flex-grow">${p.description || ''}</p>
+            <p class="font-semibold text-gray-800 mb-4">NPR ${p.price}</p>
+            <button data-id="${p.id}" class="add-to-cart-btn mt-auto bg-green-700 text-white py-2 rounded hover:bg-green-800 transition flex items-center justify-center space-x-2">
+              <i class="fas fa-cart-plus"></i><span>Add to Cart</span>
+            </button>
+          </div>
+        `;
+        productListEl.appendChild(card);
+      });
+
+      // Add event listeners for add to cart buttons
+      document.querySelectorAll('.add-to-cart-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          addToCart(id);
+        });
+      });
+    }
+
+    // Render seller products list with edit and delete
+    function renderSellerProducts() {
+      sellerProductsEl.innerHTML = '';
+      if (products.length === 0) {
+        sellerProductsEl.innerHTML = '<p class="text-gray-500">No products added yet.</p>';
+        return;
+      }
+      products.forEach((p) => {
+        const div = document.createElement('div');
+        div.className = 'border border-gray-300 rounded p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0';
+        div.innerHTML = `
+          <div class="flex items-center space-x-4">
+            <img src="${p.image || 'https://placehold.co/80x80/png?text=No+Image'}" alt="Image of ${p.name}, a local product in category ${p.category}" class="w-20 h-20 object-cover rounded" />
+            <div>
+              <h5 class="font-semibold text-green-700">${p.name}</h5>
+              <p class="text-sm text-gray-600">${p.category}</p>
+              <p class="text-sm text-gray-700">${p.description || ''}</p>
+              <p class="font-semibold text-gray-800">NPR ${p.price}</p>
+            </div>
+          </div>
+          <div class="flex space-x-3">
+            <button data-id="${p.id}" class="edit-product-btn bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded flex items-center space-x-2">
+              <i class="fas fa-edit"></i><span>Edit</span>
+            </button>
+            <button data-id="${p.id}" class="delete-product-btn bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded flex items-center space-x-2">
+              <i class="fas fa-trash-alt"></i><span>Delete</span>
+            </button>
+          </div>
+        `;
+        sellerProductsEl.appendChild(div);
+      });
+
+      // Edit buttons
+      document.querySelectorAll('.edit-product-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          startEditProduct(id);
+        });
+      });
+
+      // Delete buttons
+      document.querySelectorAll('.delete-product-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          if (confirm('Are you sure you want to delete this product?')) {
+            deleteProduct(id);
+          }
+        });
+      });
+    }
+
+    // Render cart items
+    function renderCart() {
+      cartItemsEl.innerHTML = '';
+      const cartEntries = Object.entries(cart);
+      if (cartEntries.length === 0) {
+        cartItemsEl.innerHTML = '<p class="text-gray-500">Your cart is empty.</p>';
+        cartCountEl.textContent = '0';
+        cartTotalEl.textContent = '0';
+        checkoutBtn.disabled = true;
+        return;
+      }
+      let total = 0;
+      cartEntries.forEach(([id, qty]) => {
+        const product = products.find((p) => p.id === id);
+        if (!product) return;
+        const itemTotal = product.price * qty;
+        total += itemTotal;
+
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between border border-gray-300 rounded p-3 bg-white';
+        div.innerHTML = `
+          <div class="flex items-center space-x-4">
+            <img src="${product.image || 'https://placehold.co/80x80/png?text=No+Image'}" alt="Image of ${product.name}, a local product in category ${product.category}" class="w-16 h-16 object-cover rounded" />
+            <div>
+              <h5 class="font-semibold text-green-700">${product.name}</h5>
+              <p class="text-sm text-gray-600">NPR ${product.price} x ${qty} = NPR ${itemTotal}</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button data-id="${id}" class="decrease-qty-btn bg-gray-200 hover:bg-gray-300 rounded px-2 py-1" aria-label="Decrease quantity">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="w-6 text-center font-semibold">${qty}</span>
+            <button data-id="${id}" class="increase-qty-btn bg-gray-200 hover:bg-gray-300 rounded px-2 py-1" aria-label="Increase quantity">
+              <i class="fas fa-plus"></i>
+            </button>
+            <button data-id="${id}" class="remove-cart-item-btn text-red-600 hover:text-red-800 ml-4" aria-label="Remove item">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        `;
+        cartItemsEl.appendChild(div);
+      });
+      cartCountEl.textContent = Object.values(cart).reduce((a, b) => a + b, 0);
+      cartTotalEl.textContent = total;
+      checkoutBtn.disabled = false;
+
+      // Add event listeners for quantity buttons and remove
+      document.querySelectorAll('.decrease-qty-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          changeCartQuantity(id, -1);
+        });
+      });
+      document.querySelectorAll('.increase-qty-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          changeCartQuantity(id, 1);
+        });
+      });
+      document.querySelectorAll('.remove-cart-item-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          removeFromCart(id);
+        });
+      });
+    }
+
+    // Add product to cart
+    function addToCart(id) {
+      if (!cart[id]) {
+        cart[id] = 1;
+      } else {
+        cart[id]++;
+      }
+      saveCart();
+      renderCart();
+    }
+
+    // Change quantity in cart
+    function changeCartQuantity(id, delta) {
+      if (!cart[id]) return;
+      cart[id] += delta;
+      if (cart[id] <= 0) {
+        delete cart[id];
+      }
+      saveCart();
+      renderCart();
+    }
+
+    // Remove item from cart
+    function removeFromCart(id) {
+      if (cart[id]) {
+        delete cart[id];
+        saveCart();
+        renderCart();
+      }
+    }
+
+    // Add or update product from seller form
+    sellerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const category = sellerForm['product-category'].value.trim();
+      const name = sellerForm['product-name'].value.trim();
+      const description = sellerForm['product-description'].value.trim();
+      const price = parseInt(sellerForm['product-price'].value);
+      let image = sellerForm['product-image'].value.trim();
+
+      if (!image) {
+        // Use placeholder image based on category and name
+        const text = encodeURIComponent(name || category);
+        image = `https://placehold.co/400x300/png?text=${text}`;
+      }
+
+      if (editingProductId) {
+        // Update existing product
+        const idx = products.findIndex((p) => p.id === editingProductId);
+        if (idx !== -1) {
+          products[idx] = { id: editingProductId, category, name, description, price, image };
+          editingProductId = null;
+          sellerForm.querySelector('button[type="submit"]').innerHTML = '<i class="fas fa-plus"></i><span>Add Product</span>';
+        }
+      } else {
+        // Add new product
+        const newProduct = {
+          id: generateId(),
+          category,
+          name,
+          description,
+          price,
+          image,
+        };
+        products.push(newProduct);
+      }
+      saveProducts();
+      renderProducts();
+      renderSellerProducts();
+      sellerForm.reset();
+    });
+
+    // Clear seller form
+    sellerClearBtn.addEventListener('click', () => {
+      editingProductId = null;
+      sellerForm.reset();
+      sellerForm.querySelector('button[type="submit"]').innerHTML = '<i class="fas fa-plus"></i><span>Add Product</span>';
+    });
+
+    // Start editing a product
+    function startEditProduct(id) {
+      const product = products.find((p) => p.id === id);
+      if (!product) return;
+      editingProductId = id;
+      sellerForm['product-category'].value = product.category;
+      sellerForm['product-name'].value = product.name;
+      sellerForm['product-description'].value = product.description;
+      sellerForm['product-price'].value = product.price;
+      sellerForm['product-image'].value = product.image;
+      sellerForm.querySelector('button[type="submit"]').innerHTML = '<i class="fas fa-save"></i><span>Update Product</span>';
+      window.scrollTo({ top: sellerForm.offsetTop - 20, behavior: 'smooth' });
+    }
+
+    // Delete product
+    function deleteProduct(id) {
+      products = products.filter((p) => p.id !== id);
+      // Also remove from cart if present
+      if (cart[id]) {
+        delete cart[id];
+        saveCart();
+        renderCart();
+      }
+      saveProducts();
+      renderProducts();
+      renderSellerProducts();
+    }
+
+    // Checkout button
+    checkoutBtn.addEventListener('click', () => {
+      if (Object.keys(cart).length === 0) return;
+      alert('Thank you for your purchase! Your order has been placed.');
+      cart = {};
+      saveCart();
+      renderCart();
+    });
+
+    // Initial load
+    loadProducts();
+    loadCart();
+    renderProducts();
+    renderSellerProducts();
+    renderCart();
+  </script>
+ </body>
+</html>
